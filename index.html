@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="지금 가장 핫한 SNS 유행 음식 레시피 검색 및 쿠팡 재료 한눈에 구매 앱">
+  <title>🔥 유행 음식 레시피 | Trending Food Recipe & Coupang Market</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+</head>
+<body>
+
+  <!-- Settings Drawer Modal (Top-Left trigger as specified) -->
+  <div class="settings-drawer" id="settingsDrawer">
+    <div class="settings-header">
+      <div class="settings-title">
+        <span>⚙️ 앱 환경 설정</span>
+      </div>
+      <button class="settings-close-btn" id="closeSettingsBtn">&times;</button>
+    </div>
+
+    <div class="settings-group">
+      <div class="settings-group-title">테마 및 화면 설정</div>
+      <div class="settings-option">
+        <span class="settings-label">🌙 다크 모드 / ☀️ 라이트 모드</span>
+        <label class="switch">
+          <input type="checkbox" id="themeToggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <div class="settings-group-title">데이터 보존 및 동기화 상태</div>
+      <div class="storage-info-box" id="storageStats">
+        <!-- Dyn Content -->
+      </div>
+    </div>
+
+    <div class="settings-group" style="margin-top: auto;">
+      <button class="btn-danger-outline" id="resetDataBtn">
+        🗑️ 저장 데이터 및 즐겨찾기 초기화
+      </button>
+    </div>
+  </div>
+
+  <!-- Main App Shell -->
+  <div class="app-container">
+
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="nav-left">
+        <!-- Top-Left Settings Button (Requirement: 왼쪽 상단에 설정기능이 있음) -->
+        <button class="btn-settings" id="settingsBtn" title="설정 메뉴 열기">
+          ⚙️
+        </button>
+        <a href="#" class="app-brand">
+          <span class="brand-icon">🔥</span>
+          <span class="brand-title">유행 음식 레시피</span>
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <button class="btn-favorites" id="favoritesBtn">
+          <span>❤️ 즐겨찾기</span>
+          <span class="fav-badge" id="favBadge">0</span>
+        </button>
+        <button class="btn-random" id="randomPickBtn">
+          <span>🎲 오늘의 랜덤 추천</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Search & Banner Section -->
+    <section class="hero-section">
+      <p class="hero-subtitle">TRENDING FOOD RECIPE EXPLORER</p>
+      <h1 class="hero-title">지금 SNS에서 제일 핫한 유행 음식 레시피</h1>
+      <p class="hero-desc">궁금했던 유행 요리의 정확한 조리법부터 쿠팡 재료 구매까지 한 번에 해결하세요!</p>
+
+      <!-- Search Input Container (Requirement: 검색하고자 하는 음식의 이름, 식재료의 이름) -->
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="음식 이름(예: 두바이 초콜릿) 또는 식재료(예: 카다이프, 마라, 들기름)를 검색해보세요..."
+            autocomplete="off"
+            required
+          >
+          <button class="search-clear" id="searchClearBtn" title="검색어 지우기">&times;</button>
+        </div>
+        <div class="search-hint">💡 팁: '피스타치오', '분모자', '샤인머스캣' 등 재료 이름으로도 검색 가능합니다.</div>
+      </div>
+    </section>
+
+    <!-- Category Tag Filters -->
+    <div class="category-filter">
+      <button class="category-chip active" data-category="all">🔥 전체 유행 음식</button>
+      <button class="category-chip" data-category="디저트">🍩 디저트/베이커리</button>
+      <button class="category-chip" data-category="퓨전/분식">떡볶이/분식</button>
+      <button class="category-chip" data-category="면/요리">🍜 면/인기요리</button>
+      <button class="category-chip" data-category="안주/간식">🍺 안주/스낵</button>
+      <button class="category-chip" data-category="다이어트/헬시">🥗 헬시/다이어트</button>
+    </div>
+
+    <!-- Random Featured Recipe Showcase (Requirement: 메인화면에 랜덤한 음식의 사진이 있음) -->
+    <section class="featured-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span>✨ 오늘의 랜덤 유행 음식 पिक!</span>
+        </h2>
+      </div>
+
+      <div class="featured-card" id="featuredCard">
+        <!-- Dynamic Featured Recipe -->
+      </div>
+    </section>
+
+    <!-- Main Recipe Grid (Requirement: 아래로 스크롤 하면 그 외의 다른 여러가지의 음식 사진이 있음) -->
+    <section class="main-feed-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span>🔥 유행 레시피 전체 피드</span>
+        </h2>
+      </div>
+
+      <div class="recipes-grid" id="recipesGrid">
+        <!-- Rendered Recipe Cards -->
+      </div>
+
+      <!-- No Search Results View -->
+      <div class="no-results" id="noResultsView" style="display: none;">
+        <div class="no-results-icon">🔎</div>
+        <h3 class="no-results-title">검색 결과가 없습니다</h3>
+        <p class="no-results-desc">다른 음식 이름이나 식재료 명으로 검색해보세요.</p>
+      </div>
+
+      <!-- Infinite Scroll Trigger / Loading Indicator -->
+      <div class="loading-sentinel" id="loadingSentinel" style="display: none;">
+        <div class="loading-spinner"></div>
+        <div>더 많은 유행 음식 불러오는 중...</div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Recipe Detail Modal Window -->
+  <div class="modal-overlay" id="recipeModal">
+    <div class="modal-content" id="modalDetailContent">
+      <!-- Dynamic Recipe Details Rendered by JS -->
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="recipes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
